@@ -16,8 +16,8 @@ class NewsController extends Controller
     public function index()
     {
         //
-        return 'Hello, World!';
-        return Inertia::render('news/Index', [
+       
+        return Inertia::render('News/Index', [
             //
         ]);
 
