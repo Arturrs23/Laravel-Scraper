@@ -6,10 +6,15 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head } from '@inertiajs/vue3';
- 
+import Return from '@/Components/Return.vue';
+
+defineProps(['news']);
+
 const form = useForm({
     message: '',
 });
+
+
 </script>
  
 <template>
@@ -26,6 +31,14 @@ const form = useForm({
                 <InputError :message="form.errors.message" class="mt-2" />
                 <PrimaryButton class="mt-4">Chirp</PrimaryButton>
             </form>
+            <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+                <!-- returning the input  -->
+                <Return
+                    v-for="Return in news"
+                    :key="Return.id"
+                    :news="Return"
+                />
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>

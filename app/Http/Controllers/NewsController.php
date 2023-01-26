@@ -15,10 +15,11 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        //Here we've used Eloquent's with method to eager-load every Chirp's associated user's ID and name. We've also used the latest scope to return the records in reverse-chronological order.
        
         return Inertia::render('News/Index', [
-            //
+            'news' => news::with('user:id,name')->latest()->get(),
+
         ]);
 
     }
@@ -41,7 +42,13 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+ 
+        $request->user()->news()->create($validated);
+ 
+        return redirect(route('news.index'));
         
     }
 
