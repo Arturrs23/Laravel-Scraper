@@ -12,3 +12,4 @@ class data extends Model
     public $timestamps = false;
 
 }
+

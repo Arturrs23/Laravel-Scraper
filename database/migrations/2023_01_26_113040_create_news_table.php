@@ -20,14 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Schema::create('data', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('title');
-        //     $table->string('link');
-        //     $table->string('points');
-        //     $table->string('date_created');
-
-        // });
+    
     }
 
     /**

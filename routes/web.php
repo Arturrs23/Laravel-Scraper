@@ -25,7 +25,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
+// dashboard
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -37,9 +37,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
-//
-Route::resource('news', NewsController::class)
-    ->only(['index', 'store'])
-    ->middleware(['auth', 'verified']);
+//route to /news
+Route::resource('news', NewsController::class);
+// Route::get('/news', [NewsController::class, 'index']);
 
 require __DIR__.'/auth.php';
