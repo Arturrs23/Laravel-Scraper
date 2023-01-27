@@ -17,5 +17,10 @@
         "tailwindcss": "^3.2.1",
         "vite": "^4.0.0",
         "vue": "^3.2.45"
+    },
+    "dependencies": {
+        "bootstrap-vue": "^2.23.1",
+        "vue-datatables-net": "^2.0.1",
+        "vue-good-table": "^2.21.11"
     }
 }

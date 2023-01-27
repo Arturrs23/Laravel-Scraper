@@ -5,6 +5,12 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm, Head } from "@inertiajs/vue3";
 import Return from "@/Components/Return.vue";
 import axios from "axios";
+// import the styles
+import 'vue-good-table/dist/vue-good-table.css'
+import { VueGoodTable } from 'vue-good-table';
+
+
+
 </script>
 <template>
     <AuthenticatedLayout>
@@ -34,11 +40,25 @@ import axios from "axios";
                     <td class="text-white px-5 py-5 text-sm">{{ data.date_created }}</td>
                 </tr>
             </table>
+            <div>
+                <b-table striped hover :items="items"></b-table>
+              </div>
         </div>
     </AuthenticatedLayout>
+   
 </template>
 <script>
 export default {
     props: ["data_list"],
+    data() {
+      return {
+        items: [
+          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
+          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
+          { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
+          { age: 38, first_name: 'Jami', last_name: 'Carney' }
+        ]
+      }
+    }
 };
 </script>

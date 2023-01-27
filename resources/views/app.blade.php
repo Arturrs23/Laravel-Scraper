@@ -11,6 +11,7 @@
 
 
         <!-- Scripts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.23.1/bootstrap-vue.min.css" integrity="sha512-YUqiEWiqDbBHeBWsrh+VDjFU6cMhVVmgjpBaoDhjMDhsfmfKVuU68KC0bFjWCgyD8B4LbcNc2p+1+NFtdYU9bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
