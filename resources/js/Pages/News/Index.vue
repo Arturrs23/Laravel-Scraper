@@ -3,10 +3,15 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import axios from "axios";
+
+
 </script>
 <template>
   <AuthenticatedLayout>
     <div class="p-28">
+
+
+
       <table class="min-w-full leading-normal">
         <thead class="text-left">
           <tr>
@@ -42,14 +47,43 @@ import axios from "axios";
           </td>
         </tr>
       </table>
+
+
+
+
+
       <div>
     
       </div>
     </div>
+    <!-- table -->
+    <div>
+      <b-table striped hover :items="items" :fields="fields"></b-table>
+    </div>
+
+
+
+
   </AuthenticatedLayout>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      items: [
+        { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
+        { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
+        { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
+        { age: 38, first_name: 'Jami', last_name: 'Carney' }
+      ],
+      fields: [
+        { key: 'age', label: 'Age' },
+        { key: 'first_name', label: 'First Name' },
+        { key: 'last_name', label: 'Last Name' }
+      ]
+    }
+  },
+  
   props: ["data_list"],
 
   methods: {
