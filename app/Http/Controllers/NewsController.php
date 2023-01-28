@@ -21,6 +21,7 @@ class NewsController extends Controller
 
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,13 +40,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'message' => 'required|string|max:255',
-        // ]);
- 
-        // $request->user()->news()->create($validated);
- 
-        // return redirect(route('news.index'));
+        
         
     }
 
@@ -89,8 +84,17 @@ class NewsController extends Controller
      * @param  \App\Models\news  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(news $news)
+
+    //  delete request and remove the item from the database:
+    // 
+    public function destroy($id)
     {
-        //
+        $news = News::find($id);
+        $news->delete();
+        return redirect('/news')->with('success', 'News has been deleted');
+
     }
+
+
+  
 }

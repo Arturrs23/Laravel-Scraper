@@ -5,9 +5,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm, Head } from "@inertiajs/vue3";
 import Return from "@/Components/Return.vue";
 import axios from "axios";
-// import the styles
-import 'vue-good-table/dist/vue-good-table.css'
-import { VueGoodTable } from 'vue-good-table';
+
 
 
 
@@ -38,10 +36,15 @@ import { VueGoodTable } from 'vue-good-table';
                     <td class="text-white px-5 py-5 text-sm hover:underline"><a :href="data.link" target="_blank">{{ data.link }}</a></td>
                     <td class="text-white px-5 py-5 text-sm">{{ data.points }}</td>
                     <td class="text-white px-5 py-5 text-sm">{{ data.date_created }}</td>
+
+
+                    <td class="text-red-500 p-3 hover:underline"><button @click="destroy(data.id)">Delete</button></td>
+
                 </tr>
             </table>
             <div>
-                <b-table striped hover :items="items"></b-table>
+              <b-table :items="items" :fields="fields" :striped="true" :bordered="true" :hover="true" :small="true"></b-table>
+
               </div>
         </div>
     </AuthenticatedLayout>
@@ -49,16 +52,37 @@ import { VueGoodTable } from 'vue-good-table';
 </template>
 <script>
 export default {
-    props: ["data_list"],
-    data() {
-      return {
-        items: [
+  props: ["data_list"],
+
+  // delete 
+  data() {
+        return {
+       
+            items: [
           { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
           { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
           { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
           { age: 38, first_name: 'Jami', last_name: 'Carney' }
         ]
-      }
+        }
+    },
+ 
+    methods: {
+    // async method to delete an item
+    async destroy(id) {
+        try {
+            // make a DELETE request to the server with the id of the item to delete
+            await axios.delete(`/news/${id}`)
+
+            // remove item from data_list 
+            let index = this.data_list.findIndex(item => item.id === id)
+            this.data_list.splice(index, 1)
+        } catch (error) {
+            console.log(error)
+        }
     }
-};
+
+
+}
+}
 </script>

@@ -58,7 +58,7 @@ class ScrapeCommand extends Command
             print "Date created: ".$date->text()."\n";
 
 
-            // insert in to DB using data module
+            // insert in to DB using data model
             $data = new data();
             $data->title = $title->text();
             $data->link = $title->attr('href');
@@ -72,4 +72,6 @@ class ScrapeCommand extends Command
 
    
     }
+  
+
 }

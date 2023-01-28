@@ -39,6 +39,11 @@ Route::middleware('auth')->group(function () {
 
 //route to /news
 Route::resource('news', NewsController::class);
-// Route::get('/news', [NewsController::class, 'index']);
+
+
+//pointing to destroy method in the controller
+Route::delete('/news/{id}', 'NewsController@destroy');
+
+
 
 require __DIR__.'/auth.php';
