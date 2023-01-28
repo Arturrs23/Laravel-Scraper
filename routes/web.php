@@ -41,8 +41,8 @@ Route::middleware('auth')->group(function () {
 Route::resource('news', NewsController::class);
 
 
-//pointing to destroy method in the controller
-Route::delete('/news/{id}', 'NewsController@destroy');
+    //pointing to delete method in the controller
+    Route::delete('/news/{id}', 'NewsController@destroy');
 
 
 

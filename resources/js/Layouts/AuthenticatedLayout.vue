@@ -35,9 +35,7 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('news.index')" :active="route().current('news.index')">
                                   Hacker News
                                 </NavLink>
-                                <!-- <NavLink :href="route('News.Index')" :active="route().current('News.Index')">
-                                    Chirps
-                                </NavLink> -->
+                           
                             </div>
                         </div>
 
