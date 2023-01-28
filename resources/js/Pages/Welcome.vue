@@ -17,7 +17,7 @@ defineProps({
     <div class="">
       <div
         v-if="canLogin"
-        class="hidden  fixed top-50 right-50 px-6 py-4 sm:block bg-white shadow-lg rounded-lg pt-6 pb-8 mb-2"
+        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-white-200"
       >
         <Link
           v-if="$page.props.auth.user"
