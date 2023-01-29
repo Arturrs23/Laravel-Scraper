@@ -1,91 +1,61 @@
-<script setup>
+<script lang="ts" setup>
+import type { Header, Item } from "vue3-easy-data-table";
+import EasyDataTable from 'vue3-easy-data-table';
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import axios from "axios";
 
 
+const headers: Header[] = [
+  { text: "Name", value: "title" },
+  { text: "Link", value: "link" },
+  { text: "Points", value: "points" },
+  { text: "Date", value: "date_created" },
+];
 </script>
 <template>
   <AuthenticatedLayout>
-    <div class="p-28">
-
-
-
-      <table class="min-w-full leading-normal">
-        <thead class="text-left">
-          <tr>
-            <th class="text-white px-5 py-5 text-sm">
-              <h3>Name</h3>
-            </th>
-            <th class="text-white px-5 py-5 text-sm">
-              <h3>Link</h3>
-            </th>
-            <th class="text-white px-5 py-5 text-sm">
-              <h3>Points</h3>
-            </th>
-            <th class="text-white px-5 py-5 text-sm">
-              <h3>Date</h3>
-            </th>
+    <div class="relative overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr class="text-white border border-white-500 text-left">
+            <th scope="col" class="px-6 py-3" v-for="header in headers" :key="header.value">{{ header.text }}</th>
+            <th>Delete</th>
           </tr>
         </thead>
-        <!-- using var data_list to loop trough and display-->
-        <tr
-          class="border border-white-500"
-          v-for="data in data_list"
-          :key="data.id"
-        >
-          <td class="text-white px-5 py-5 text-sm">{{ data.title }}</td>
-          <td class="text-white px-5 py-5 text-sm hover:underline">
-            <a :href="data.link" target="_blank">{{ data.link }}</a>
-          </td>
-          <td class="text-white px-5 py-5 text-sm">{{ data.points }}</td>
-          <td class="text-white px-5 py-5 text-sm">{{ data.date_created }}</td>
-          <!-- del btn -->
-            <td class="text-red-500 p-3 ">
-            <button class="hover:underline" @click="destroy(data.id)">Delete</button>
-          </td>
-        </tr>
+        <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="item in data_list"
+            :key="item.id">
+            <td class="px-6 py-4" v-for="header in headers" :key="header.value">{{ item[header.value] }}</td>
+            <td>
+              <PrimaryButton @click="destroy(item.id)">Delete</PrimaryButton>
+            </td>
+          </tr>
+        </tbody>
       </table>
-
-
-
-
-
-      <div>
-    
-      </div>
     </div>
-    <!-- table -->
-    <div>
-      <b-table striped hover :items="items" :fields="fields"></b-table>
-    </div>
-
-
-
-
-  </AuthenticatedLayout>
+</AuthenticatedLayout>
 </template>
-<script>
+
+
+
+
+
+
+<script lang="ts">
 export default {
+  props: ['data_list'],
+  components: { EasyDataTable, AuthenticatedLayout, PrimaryButton },
   data() {
     return {
-      items: [
-        { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-        { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-        { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-        { age: 38, first_name: 'Jami', last_name: 'Carney' }
-      ],
-      fields: [
-        { key: 'age', label: 'Age' },
-        { key: 'first_name', label: 'First Name' },
-        { key: 'last_name', label: 'Last Name' }
+      headers: [
+        { text: "Name", value: "title" },
+        { text: "Link", value: "link" },
+        { text: "Points", value: "points" },
+        { text: "Date", value: "date_created" }
       ]
     }
   },
-  
-  props: ["data_list"],
-
   methods: {
     async destroy(id) {
       try {
