@@ -86,11 +86,11 @@ class NewsController extends Controller
 
      public function destroy($id)
      {
-         // Find the item with the specified ID
+         // Find the item with ID
          $data = Data::findOrFail($id);
          // Delete the item
          $data->delete();
-         // Return a success response (e.g. HTTP 200 OK)
+         // Return a success response 
          return response()->json(null, 204);
      }
 }
