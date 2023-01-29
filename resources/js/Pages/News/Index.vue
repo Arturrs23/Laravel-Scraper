@@ -5,45 +5,54 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import axios from "axios";
 
+
+
 </script>
 <template>
-  <AuthenticatedLayout>
-    <EasyDataTable :headers="headers" :items="data_list" :options="options" :rows-per-page="10">
-      <template v-slot:item.title="{ item }">
-        {{ item.title }}
+  <AuthenticatedLayout >
+    <EasyDataTable class="text-white p-28 w-full text-sm text-left text-gray-500 dark:text-gray-400"
+     :headers="headers" 
+     :items="data_list"
+     :options="options" 
+     :rows-per-page="10">
      
+      
+    
+      <template class="text-center" #pagination="{ prevPage, nextPage, isFirstPage, isLastPage }">
+        <button class="text-white hover:underline " :disabled="isFirstPage" @click="prevPage">Prev page</button>
+        <button class="text-white hover:underline" :disabled="isLastPage" @click="nextPage">Next page</button>
+        
       </template>
-      <template>
-        <PrimaryButton @click="destroy(item.id)">Delete</PrimaryButton>
-
-      </template>
-      <template #pagination="{ prevPage, nextPage, isFirstPage, isLastPage }">
-        <button :disabled="isFirstPage" @click="prevPage">prev page</button>
-        <button :disabled="isLastPage" @click="nextPage">next page</button>
+      <template v-slot:item="{ item }">
+        <td>{{ item.title }}</td>
+        <td>{{ item.link }}</td>
+        <td>{{ item.points }}</td>
+        <td>{{ item.date_created }}</td>
+        <td>
+          <button class="text-white hover:underline" @click="destroy(item.id)">Delete</button>
+        </td>
       </template>
     </EasyDataTable>
   </AuthenticatedLayout>
 </template>
 
 <script lang="ts">
-
-
 export default {
   components: { EasyDataTable, PrimaryButton },
   props: ['data_list'],
   data() {
     return {
       headers: [
-        { text: "Name", value: "title" },
-        { text: "Link", value: "link" },
-        { text: "Points", value: "points" },
-        { text: "Date", value: "date_created" },
-        { text: "Delete", value: "destroy" }
+    { text: "Name", value: "title" },
+    { text: "Link", value: "link" },
+    { text: "Points", value: "points" },
+    { text: "Date", value: "date_created" },
+    { text: "Actions", value: "actions" }
       ],
       options: {
         pagination: {
           sortBy: 'name',
-          itemsPerPage: 10
+          itemsPerPage: 10 
         },
       }
     }
