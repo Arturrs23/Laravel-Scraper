@@ -18,7 +18,7 @@ class NewsController extends Controller
     {
         // query data table using facade
         $data = DB::table('data')->get() ;
-        // passing to inertia render as var data_list
+        // passing to inertia render data_list to $data
         return Inertia::render('News/Index', ['data_list' => $data]);
     }
 
