@@ -97,7 +97,7 @@ export default {
       try {
         // sending req to server with the item ID
         axios.delete(`/news/${id}`); //enpoint to the same /news after delete
-        // emove the item
+        // remove the item
         let index = this.data_list.findIndex((item) => item.id === id);
         this.data_list.splice(index, 1);
       } catch (error) {
